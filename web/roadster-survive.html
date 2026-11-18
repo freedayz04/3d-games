@@ -1802,6 +1802,9 @@ function setPlayerCar(carId, weaponIds, barrels, skin = skinOf(carId)) {
     player.body.add(player.model.g);
     player.carId = carId; player.mountKey = '';
     player.w = player.model.w; player.l = player.model.l;
+    // Scale so the widest point (wheels included) fits in one lane with a margin.
+    const size = new THREE.Box3().setFromObject(buildPlayerCar(carId).g).getSize(new THREE.Vector3()); // measured detached, unscaled
+    player.fitScale = Math.min(1, (LANES[1] - LANES[0] - 0.5) / size.x);
     player.label.spr.position.set(0, 0.7, player.l / 2 + 1.0);
   }
   const key = carId + '|' + weaponIds.join(',') + '|' + barrels;
@@ -1888,7 +1891,7 @@ function newRun() {
   run.events = buildEvents(level, run.length);
   setBiome(biome);
   clearEntities();
-  player.x = player.targetX = 0; player.oz = player.targetOZ = 0; player.scale = 0.9; player.spin = 0;
+  player.x = player.targetX = 0; player.oz = player.targetOZ = 0; player.spin = 0;
   player.group.visible = true; player.body.visible = true;
   setPlayerCar(car.id, weaponIds, run.barrels);
   camState.pos.set(0, 10, 12); camState.look.set(0, 0, -10);
@@ -2741,8 +2744,7 @@ function updatePlay(dt) {
   const pz = playerZ();
   updateAutopilotFx(F.autopilot > 0 && !r.over, pz);
   sfx.engineSet(clamp((mult - 1) * 1.5 + 0.4 - player.oz * 0.06, 0, 1.4));
-  const baseScale = { tank: 0.82, fire: 0.88, garbage: 0.86, monster: 0.86, ambulance: 0.92, icecream: 0.92 }[r.car.id] || 1;
-  player.scale += (baseScale * clamp(0.9 + 0.2 * Math.log2(Math.max(1, r.power) / 20), 0.9, 1.3) - player.scale) * Math.min(1, dt * 4);
+  player.scale = player.fitScale; // fixed size: every car fits inside one lane, power never grows the model
   player.group.position.set(player.x, 0, pz);
   player.group.scale.setScalar(player.scale);
   player.body.rotation.y = clamp(-(player.x - prevX) / Math.max(dt, 0.001) * 0.03, -0.35, 0.35) + player.spin;
