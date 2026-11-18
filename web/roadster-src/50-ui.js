@@ -15,7 +15,7 @@ function updateCamera(rdt) {
     garageT += rdt;
     const a = garageT * 0.35, r = (state === 'garage' ? 7.5 : 7) + player.l * 1.1;
     pos = new THREE.Vector3(Math.sin(a) * r, state === 'garage' ? 4.6 : 4.4, showcaseZ + Math.cos(a) * r);
-    look = new THREE.Vector3(0, state === 'garage' ? -2.2 : 0.4, showcaseZ);
+    look = new THREE.Vector3(0, state === 'garage' ? -2.2 : 2.8, showcaseZ);
   }
   const k = 1 - Math.exp(-6 * rdt);
   camState.pos.lerp(pos, k); camState.look.lerp(look, k);

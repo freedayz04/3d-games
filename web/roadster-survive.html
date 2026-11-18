@@ -249,13 +249,13 @@ button:focus-visible { outline: 3px solid var(--cash); outline-offset: 3px; }
 
 /* ---------- title badge ---------- */
 .logo { position: relative; display: flex; flex-direction: column; align-items: center; transform: rotate(-3deg); filter: drop-shadow(0 calc(var(--u)*2) calc(var(--u)*2) rgba(0,0,0,.45)); }
-.emblem { width: calc(var(--u)*34); height: auto; margin-bottom: calc(var(--u)*-6); position: relative; z-index: 2; }
-.l1 { position: relative; font: calc(var(--u)*17)/1 var(--display); letter-spacing: .01em; color: transparent; z-index: 1; }
+.emblem { width: calc(var(--u)*24); height: auto; margin-bottom: calc(var(--u)*-6); position: relative; z-index: 2; }
+.l1 { position: relative; font: calc(var(--u)*12)/1 var(--display); letter-spacing: .01em; color: transparent; z-index: 1; }
 .l1::after { content: attr(data-t); position: absolute; inset: 0; color: transparent; background: linear-gradient(180deg, #fff3a0 0%, #ffb000 38%, #ff5a1f 62%, #c2370c 100%); -webkit-background-clip: text; background-clip: text; }
 .l1::before { content: attr(data-t); position: absolute; inset: 0; color: #ff7a1a; -webkit-text-stroke: calc(var(--u)*2.6) #1b2a5a;
   text-shadow: 0 calc(var(--u)*.8) 0 #1b2a5a, 0 calc(var(--u)*1.6) 0 #1b2a5a, 0 calc(var(--u)*2.4) 0 #12204a, 0 calc(var(--u)*3.2) 0 #12204a; }
 .ribbon { position: relative; display: flex; align-items: center; margin-top: calc(var(--u)*-1.5); z-index: 2; }
-.ribbon b { font: calc(var(--u)*8.4)/1 var(--display); font-weight: 400; letter-spacing: .12em; color: #fff; padding: calc(var(--u)*1.6) calc(var(--u)*7); background: linear-gradient(180deg, #3f7bff, #1d46b8); border: calc(var(--u)*.9) solid #fff;
+.ribbon b { font: calc(var(--u)*6)/1 var(--display); font-weight: 400; letter-spacing: .12em; color: #fff; padding: calc(var(--u)*1.6) calc(var(--u)*7); background: linear-gradient(180deg, #3f7bff, #1d46b8); border: calc(var(--u)*.9) solid #fff;
   border-radius: calc(var(--u)*1.6); box-shadow: 0 calc(var(--u)*1.2) 0 #12308a; text-shadow: 0 calc(var(--u)*.7) 0 rgba(0,0,0,.35); }
 .ribbon i { width: calc(var(--u)*6); height: calc(var(--u)*8); background: #12308a; border: calc(var(--u)*.9) solid #fff; margin: calc(var(--u)*2.4) calc(var(--u)*-1.4) 0; position: relative; z-index: -1; }
 .ribbon i:first-child { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%); }
@@ -2940,7 +2940,7 @@ function updateCamera(rdt) {
     garageT += rdt;
     const a = garageT * 0.35, r = (state === 'garage' ? 7.5 : 7) + player.l * 1.1;
     pos = new THREE.Vector3(Math.sin(a) * r, state === 'garage' ? 4.6 : 4.4, showcaseZ + Math.cos(a) * r);
-    look = new THREE.Vector3(0, state === 'garage' ? -2.2 : 0.4, showcaseZ);
+    look = new THREE.Vector3(0, state === 'garage' ? -2.2 : 2.8, showcaseZ);
   }
   const k = 1 - Math.exp(-6 * rdt);
   camState.pos.lerp(pos, k); camState.look.lerp(look, k);
