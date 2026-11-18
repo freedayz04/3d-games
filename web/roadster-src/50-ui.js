@@ -9,8 +9,8 @@ function updateCamera(rdt) {
   if (state === 'play' && run) {
     anchor = -run.dist;
     const s = player.scale;
-    pos = new THREE.Vector3(player.x * 0.4, 9.4 + s * 1.3, anchor + 10 + s);
-    look = new THREE.Vector3(player.x * 0.5, 0, anchor - 10);
+    pos = new THREE.Vector3(player.x * 0.4, 12.6 + s * 1.3, anchor + 14 + s);
+    look = new THREE.Vector3(player.x * 0.5, 0, anchor - 11);
   } else {
     garageT += rdt;
     const a = garageT * 0.35, r = (state === 'garage' ? 7.5 : 7) + player.l * 1.1;
@@ -57,7 +57,7 @@ canvas.addEventListener('pointermove', e => {
   if (run.fx.autopilot > 0) { if (Math.hypot(e.clientX - dragX0, e.clientY - dragY0) > 30) { restartAnim($('apbar'), 'nudge'); dragX0 = e.clientX; dragY0 = e.clientY; } return; }
   const r = canvas.getBoundingClientRect();
   const dx = e.clientX - dragX0, dy = e.clientY - dragY0;
-  player.targetX = tx0 + dx / r.width * (13 + save.parts.motor * 0.6);
+  player.targetX = tx0 + dx / r.width * (21 + save.parts.motor * 0.9);
   player.targetOZ = oz0 + dy / r.height * 24;
   if (Math.abs(dx) > r.width * 0.06) run.movedX = true;
   if (Math.abs(dy) > r.height * 0.04) run.movedY = true;

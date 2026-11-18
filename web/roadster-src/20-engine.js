@@ -54,7 +54,7 @@ function resize() {
   stageEl.style.width = w + 'px'; stageEl.style.height = h + 'px';
   stageEl.style.setProperty('--u', (w / 100) + 'px');
   renderer.setSize(w, h, false);
-  camera.aspect = w / h; camera.fov = w / h < 0.5 ? 62 : 56; camera.updateProjectionMatrix();
+  camera.aspect = w / h; camera.fov = w / h < 0.5 ? 67 : 58; camera.updateProjectionMatrix();
 }
 addEventListener('resize', resize); resize();
 
@@ -138,6 +138,31 @@ function drawLabel(L, big, small, bg, ring) {
     ctx.font = font(0.5); fitText(ctx, big, w - 40, h * 0.5); ctx.fillText(big, w / 2, h * 0.47);
   }
   ctx.shadowColor = 'transparent';
+  L.tex.needsUpdate = true;
+}
+// Enemy health bar: fill = remaining power, white notch = the point where you can ram it.
+function drawBar(L, frac, notch, color, sub, ring) {
+  frac = Math.round(Math.max(0, Math.min(1, frac)) * 40) / 40;
+  notch = notch === null ? null : Math.round(Math.max(0, Math.min(1, notch)) * 40) / 40;
+  const key = 'bar|' + frac + '|' + notch + '|' + color + '|' + sub + '|' + (ring || '');
+  if (L.key === key) return;
+  L.key = key;
+  const { ctx, c } = L, w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+  const x0 = 14, bw = w - 28, by = sub ? 58 : 40, bh = 40, r = 14;
+  if (sub) {
+    ctx.font = `${Math.round(h * 0.22)}px "Russo One", "Arial Black", sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.lineWidth = 7; ctx.strokeStyle = 'rgba(0,0,0,.55)'; ctx.strokeText(sub, w / 2, 30); ctx.fillStyle = '#fff'; ctx.fillText(sub, w / 2, 30);
+  }
+  ctx.fillStyle = 'rgba(0,0,0,.35)'; rr(ctx, x0, by + 5, bw, bh, r); ctx.fill();
+  ctx.fillStyle = '#1f2937'; rr(ctx, x0, by, bw, bh, r); ctx.fill();
+  if (frac > 0) { ctx.save(); rr(ctx, x0, by, bw, bh, r); ctx.clip(); ctx.fillStyle = color; ctx.fillRect(x0, by, bw * frac, bh); ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fillRect(x0, by, bw * frac, bh * 0.38); ctx.restore(); }
+  ctx.lineWidth = 5; ctx.strokeStyle = ring || 'rgba(255,255,255,.95)'; rr(ctx, x0, by, bw, bh, r); ctx.stroke();
+  if (notch !== null && notch > 0 && notch < 1) {
+    const nx = x0 + bw * notch;
+    ctx.fillStyle = '#fff'; ctx.fillRect(nx - 3, by - 8, 6, bh + 16);
+    ctx.beginPath(); ctx.moveTo(nx - 10, by - 14); ctx.lineTo(nx + 10, by - 14); ctx.lineTo(nx, by - 2); ctx.closePath(); ctx.fill();
+  }
   L.tex.needsUpdate = true;
 }
 function fitText(ctx, text, maxW, size) {

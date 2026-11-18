@@ -2,7 +2,7 @@
 // ======================================================================
 // DATA — every balance number lives here
 // ======================================================================
-const ROAD_HALF = 4.5, LANES = [-3, 0, 3];
+const ROAD_HALF = 7.0, LANES = [-5.6, -2.8, 0, 2.8, 5.6]; // 5 lanes
 const CHUNK = 40, NCHUNK = 8;
 
 const CARS = [
@@ -127,7 +127,7 @@ const BIOMES = [
 // What each level adds. Later levels mix everything.
 const INTRO = {
   2: { enemy: 'biker',    hazard: 'boost',   text: 'NEW: <span class="y">Bikers</span> weave between lanes. Green <span class="g">boost pads</span> speed you up!' },
-  3: { enemy: 'gunner',   hazard: 'oil',     text: 'NEW: <span class="r">Gunner jeeps</span> shoot back. Avoid <span class="b">oil slicks</span>!' },
+  3: { enemy: 'gunner',   hazard: 'oil',     text: 'NEW: <span class="r">Gunner jeeps</span> shoot back. Avoid <span class="y">oil slicks</span>!' },
   4: { enemy: 'shield',   hazard: 'barrier', text: 'NEW: <span class="b">Shield vans</span> block bullets from behind. Ram them or use a laser! Watch the roadwork.' },
   5: { enemy: 'kamikaze', hazard: 'rocks',   text: 'NEW: <span class="r">Kamikaze</span> cars drive at you. Shoot them first! Falling rocks ahead.' },
   6: { enemy: 'splitter', hazard: null,      text: 'NEW: <span class="g">Splitter vans</span> break into two small cars. Eat both!' },

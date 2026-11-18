@@ -701,7 +701,7 @@ function buildChunk(i, biome) {
     if (B.deco === 'bridge') g.add(part(GEO.box, B.ground, [60, 0.3, CHUNK], [s * (ROAD_HALF + 31), -3, zc], { roughness: 0.2, metalness: 0.1 }));
     else g.add(part(GEO.box, B.ground, [40, 0.3, CHUNK], [s * (ROAD_HALF + 21.2), -0.2, zc]));
   }
-  for (const x of [-1.5, 1.5]) for (let z = -2; z > -CHUNK; z -= 6) g.add(part(GEO.box, '#f4f6fa', [0.15, 0.02, 2.4], [x, 0.012, z]));
+  for (const x of [-4.2, -1.4, 1.4, 4.2]) for (let z = -2; z > -CHUNK; z -= 6) g.add(part(GEO.box, '#f4f6fa', [0.15, 0.02, 2.4], [x, 0.012, z]));
   decorate(g, B);
   g.position.z = 20 - i * CHUNK;
   scene.add(g);

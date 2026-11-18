@@ -82,8 +82,8 @@ svg { display: block; }
 .tut .finger { animation: fing 2.4s ease-in-out infinite; transform-origin: center; }
 @keyframes fing { 0%,100% { transform: translate(0,0); } 20% { transform: translate(14px,0); } 40% { transform: translate(-14px,0); } 60% { transform: translate(0,-14px); } 80% { transform: translate(0,14px); } }
 
-.hint { position: absolute; left: calc(var(--u)*5); right: calc(var(--u)*17); top: 22%; text-align: center; font: 800 calc(var(--u)*4)/1.25 var(--body);
-  padding: calc(var(--u)*2.2) calc(var(--u)*3); border-radius: calc(var(--u)*3); background: var(--panel); border: 1px solid var(--line); pointer-events: none; opacity: 0; transform: translateY(-8px); transition: opacity .25s, transform .25s; text-wrap: balance; }
+.hint { position: absolute; left: calc(var(--u)*5); right: calc(var(--u)*17); top: 13.5%; text-align: center; font: 800 calc(var(--u)*3.6)/1.2 var(--body);
+  padding: calc(var(--u)*1.5) calc(var(--u)*2.8); border-radius: calc(var(--u)*2.4); background: rgba(15, 21, 35, 0.62); border: 1px solid var(--line); pointer-events: none; opacity: 0; transform: translateY(-8px); transition: opacity .25s, transform .25s; text-wrap: balance; }
 .hint.on { opacity: 1; transform: none; }
 .hint .g { color: var(--go); } .hint .r { color: var(--stop); } .hint .y { color: var(--cash); } .hint .b { color: #7cc4ff; }
 .flash { position: absolute; left: 0; right: 0; top: 38%; text-align: center; font: calc(var(--u)*10.5)/1 var(--display); pointer-events: none; opacity: 0;
@@ -105,8 +105,6 @@ svg { display: block; }
 .panel { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--u)*3);
   padding: calc(var(--u)*6) calc(var(--u)*5); text-align: center; box-sizing: border-box; }
 .panel.dim { background: linear-gradient(rgba(12,18,32,.2), rgba(12,18,32,.88) 60%); }
-.logo { font: calc(var(--u)*13)/.92 var(--display); color: var(--cash); text-shadow: 0 calc(var(--u)*1) 0 #c4561a, 0 calc(var(--u)*2) calc(var(--u)*3) rgba(0,0,0,.35); transform: skewX(-8deg); }
-.logo span { display: block; color: var(--ink); text-shadow: 0 calc(var(--u)*1) 0 #1d5fbf, 0 calc(var(--u)*2) calc(var(--u)*3) rgba(0,0,0,.35); }
 .tag { font: 800 calc(var(--u)*3.6)/1.3 var(--body); }
 .tag b { color: var(--go); } .tag i { font-style: normal; color: var(--cash); }
 .small { font: 400 calc(var(--u)*3)/1.5 var(--body); color: var(--muted); max-width: 34ch; }
@@ -248,6 +246,21 @@ button:focus-visible { outline: 3px solid var(--cash); outline-offset: 3px; }
 .stats div { flex-direction: row; align-items: center; gap: calc(var(--u)*2.4); }
 .stats .si svg, .stats .si img { width: calc(var(--u)*9); height: calc(var(--u)*9); display: block; object-fit: contain; }
 
+
+/* ---------- title badge ---------- */
+.logo { position: relative; display: flex; flex-direction: column; align-items: center; transform: rotate(-3deg); filter: drop-shadow(0 calc(var(--u)*2) calc(var(--u)*2) rgba(0,0,0,.45)); }
+.emblem { width: calc(var(--u)*34); height: auto; margin-bottom: calc(var(--u)*-6); position: relative; z-index: 2; }
+.l1 { position: relative; font: calc(var(--u)*17)/1 var(--display); letter-spacing: .01em; color: transparent; z-index: 1; }
+.l1::after { content: attr(data-t); position: absolute; inset: 0; color: transparent; background: linear-gradient(180deg, #fff3a0 0%, #ffb000 38%, #ff5a1f 62%, #c2370c 100%); -webkit-background-clip: text; background-clip: text; }
+.l1::before { content: attr(data-t); position: absolute; inset: 0; color: #ff7a1a; -webkit-text-stroke: calc(var(--u)*2.6) #1b2a5a;
+  text-shadow: 0 calc(var(--u)*.8) 0 #1b2a5a, 0 calc(var(--u)*1.6) 0 #1b2a5a, 0 calc(var(--u)*2.4) 0 #12204a, 0 calc(var(--u)*3.2) 0 #12204a; }
+.ribbon { position: relative; display: flex; align-items: center; margin-top: calc(var(--u)*-1.5); z-index: 2; }
+.ribbon b { font: calc(var(--u)*8.4)/1 var(--display); font-weight: 400; letter-spacing: .12em; color: #fff; padding: calc(var(--u)*1.6) calc(var(--u)*7); background: linear-gradient(180deg, #3f7bff, #1d46b8); border: calc(var(--u)*.9) solid #fff;
+  border-radius: calc(var(--u)*1.6); box-shadow: 0 calc(var(--u)*1.2) 0 #12308a; text-shadow: 0 calc(var(--u)*.7) 0 rgba(0,0,0,.35); }
+.ribbon i { width: calc(var(--u)*6); height: calc(var(--u)*8); background: #12308a; border: calc(var(--u)*.9) solid #fff; margin: calc(var(--u)*2.4) calc(var(--u)*-1.4) 0; position: relative; z-index: -1; }
+.ribbon i:first-child { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%); }
+.ribbon i:last-child { clip-path: polygon(0 0, 100% 0, 65% 50%, 100% 100%, 0 100%); }
+
 /* ---------- v5 ---------- */
 .iconbtn.corner { position: absolute; top: calc(var(--u)*4); right: calc(var(--u)*4); width: calc(var(--u)*12); height: calc(var(--u)*12); }
 .fx { padding: calc(var(--u)*.9); gap: calc(var(--u)*.6); }
@@ -303,7 +316,18 @@ button:focus-visible { outline: 3px solid var(--cash); outline-offset: 3px; }
   <div class="redflash" id="redflash"></div>
 
   <div class="panel title" id="titlePanel">
-    <div class="logo">Roadster<span>Survive</span></div>
+    <div class="logo" role="img" aria-label="Roadster Survive">
+      <svg class="emblem" viewBox="0 0 120 84" aria-hidden="true">
+        <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3a0"/><stop offset="1" stop-color="#ffb000"/></linearGradient>
+        <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a3d"/><stop offset="1" stop-color="#d9480f"/></linearGradient></defs>
+        <path d="M58 52L6 44c4-14 18-24 40-24l10 8-18 4 22 6z" fill="url(#wg)" stroke="#1b2a5a" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M62 52l52-8c-4-14-18-24-40-24l-10 8 18 4-22 6z" fill="url(#wg)" stroke="#1b2a5a" stroke-width="4" stroke-linejoin="round"/>
+        <circle cx="60" cy="38" r="26" fill="#2b4a9a" stroke="#1b2a5a" stroke-width="4"/><circle cx="60" cy="38" r="20" fill="none" stroke="#6fa0ff" stroke-width="3"/>
+        <path d="M60 8l9.5 19.5 21.5 3-15.6 15.2 3.7 21.4L60 56.8 40.9 67.1l3.7-21.4L29 30.5l21.5-3z" fill="url(#sg)" stroke="#7a3b00" stroke-width="3" stroke-linejoin="round"/>
+      </svg>
+      <div class="l1" data-t="ROADSTER">ROADSTER</div>
+      <div class="ribbon"><i></i><b>SURVIVE</b><i></i></div>
+    </div>
     <div class="grow"></div>
     <button class="btn play" id="playBtn"><span class="tri"></span>PLAY</button>
     <div class="trow"></div>
@@ -353,7 +377,7 @@ import * as THREE from 'three';
 // ======================================================================
 // DATA — every balance number lives here
 // ======================================================================
-const ROAD_HALF = 4.5, LANES = [-3, 0, 3];
+const ROAD_HALF = 7.0, LANES = [-5.6, -2.8, 0, 2.8, 5.6]; // 5 lanes
 const CHUNK = 40, NCHUNK = 8;
 
 const CARS = [
@@ -478,7 +502,7 @@ const BIOMES = [
 // What each level adds. Later levels mix everything.
 const INTRO = {
   2: { enemy: 'biker',    hazard: 'boost',   text: 'NEW: <span class="y">Bikers</span> weave between lanes. Green <span class="g">boost pads</span> speed you up!' },
-  3: { enemy: 'gunner',   hazard: 'oil',     text: 'NEW: <span class="r">Gunner jeeps</span> shoot back. Avoid <span class="b">oil slicks</span>!' },
+  3: { enemy: 'gunner',   hazard: 'oil',     text: 'NEW: <span class="r">Gunner jeeps</span> shoot back. Avoid <span class="y">oil slicks</span>!' },
   4: { enemy: 'shield',   hazard: 'barrier', text: 'NEW: <span class="b">Shield vans</span> block bullets from behind. Ram them or use a laser! Watch the roadwork.' },
   5: { enemy: 'kamikaze', hazard: 'rocks',   text: 'NEW: <span class="r">Kamikaze</span> cars drive at you. Shoot them first! Falling rocks ahead.' },
   6: { enemy: 'splitter', hazard: null,      text: 'NEW: <span class="g">Splitter vans</span> break into two small cars. Eat both!' },
@@ -608,7 +632,7 @@ function resize() {
   stageEl.style.width = w + 'px'; stageEl.style.height = h + 'px';
   stageEl.style.setProperty('--u', (w / 100) + 'px');
   renderer.setSize(w, h, false);
-  camera.aspect = w / h; camera.fov = w / h < 0.5 ? 62 : 56; camera.updateProjectionMatrix();
+  camera.aspect = w / h; camera.fov = w / h < 0.5 ? 67 : 58; camera.updateProjectionMatrix();
 }
 addEventListener('resize', resize); resize();
 
@@ -692,6 +716,31 @@ function drawLabel(L, big, small, bg, ring) {
     ctx.font = font(0.5); fitText(ctx, big, w - 40, h * 0.5); ctx.fillText(big, w / 2, h * 0.47);
   }
   ctx.shadowColor = 'transparent';
+  L.tex.needsUpdate = true;
+}
+// Enemy health bar: fill = remaining power, white notch = the point where you can ram it.
+function drawBar(L, frac, notch, color, sub, ring) {
+  frac = Math.round(Math.max(0, Math.min(1, frac)) * 40) / 40;
+  notch = notch === null ? null : Math.round(Math.max(0, Math.min(1, notch)) * 40) / 40;
+  const key = 'bar|' + frac + '|' + notch + '|' + color + '|' + sub + '|' + (ring || '');
+  if (L.key === key) return;
+  L.key = key;
+  const { ctx, c } = L, w = c.width, h = c.height;
+  ctx.clearRect(0, 0, w, h);
+  const x0 = 14, bw = w - 28, by = sub ? 58 : 40, bh = 40, r = 14;
+  if (sub) {
+    ctx.font = `${Math.round(h * 0.22)}px "Russo One", "Arial Black", sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.lineWidth = 7; ctx.strokeStyle = 'rgba(0,0,0,.55)'; ctx.strokeText(sub, w / 2, 30); ctx.fillStyle = '#fff'; ctx.fillText(sub, w / 2, 30);
+  }
+  ctx.fillStyle = 'rgba(0,0,0,.35)'; rr(ctx, x0, by + 5, bw, bh, r); ctx.fill();
+  ctx.fillStyle = '#1f2937'; rr(ctx, x0, by, bw, bh, r); ctx.fill();
+  if (frac > 0) { ctx.save(); rr(ctx, x0, by, bw, bh, r); ctx.clip(); ctx.fillStyle = color; ctx.fillRect(x0, by, bw * frac, bh); ctx.fillStyle = 'rgba(255,255,255,.28)'; ctx.fillRect(x0, by, bw * frac, bh * 0.38); ctx.restore(); }
+  ctx.lineWidth = 5; ctx.strokeStyle = ring || 'rgba(255,255,255,.95)'; rr(ctx, x0, by, bw, bh, r); ctx.stroke();
+  if (notch !== null && notch > 0 && notch < 1) {
+    const nx = x0 + bw * notch;
+    ctx.fillStyle = '#fff'; ctx.fillRect(nx - 3, by - 8, 6, bh + 16);
+    ctx.beginPath(); ctx.moveTo(nx - 10, by - 14); ctx.lineTo(nx + 10, by - 14); ctx.lineTo(nx, by - 2); ctx.closePath(); ctx.fill();
+  }
   L.tex.needsUpdate = true;
 }
 function fitText(ctx, text, maxW, size) {
@@ -1586,7 +1635,7 @@ function buildChunk(i, biome) {
     if (B.deco === 'bridge') g.add(part(GEO.box, B.ground, [60, 0.3, CHUNK], [s * (ROAD_HALF + 31), -3, zc], { roughness: 0.2, metalness: 0.1 }));
     else g.add(part(GEO.box, B.ground, [40, 0.3, CHUNK], [s * (ROAD_HALF + 21.2), -0.2, zc]));
   }
-  for (const x of [-1.5, 1.5]) for (let z = -2; z > -CHUNK; z -= 6) g.add(part(GEO.box, '#f4f6fa', [0.15, 0.02, 2.4], [x, 0.012, z]));
+  for (const x of [-4.2, -1.4, 1.4, 4.2]) for (let z = -2; z > -CHUNK; z -= 6) g.add(part(GEO.box, '#f4f6fa', [0.15, 0.02, 2.4], [x, 0.012, z]));
   decorate(g, B);
   g.position.z = 20 - i * CHUNK;
   scene.add(g);
@@ -1803,12 +1852,13 @@ function updateAutopilotFx(on, pz) {
   });
   if (apTarget) { apRing.position.set(apTarget.x, 0.08, apTarget.z); apRing.scale.setScalar(apTarget.w * 0.9 + 0.3 * Math.sin(t * 10)); }
 }
+const OZ_BACK = 6.5; // how far the car can drop back down the screen (position only, speed unchanged)
 const playerZ = () => -run.dist + player.oz;
 const effPower = () => run.power * (run.fx.boost > 0 ? 1.5 : 1);
 function canRam(e) {
   if (e.kind === 'boss') return effPower() > Math.ceil(e.power);
   if (run.fx.nitro > 0) return true;
-  return !e.hazard && !e.indestructible && effPower() > Math.ceil(e.power);
+  return !e.hazard && !e.obstacle && effPower() > Math.ceil(e.power);
 }
 
 // ======================================================================
@@ -1872,12 +1922,12 @@ function buildEvents(level, length) {
   const ev = [];
   let d;
   if (level === 1) {
-    ev.push({ d: 45,  type: 'cars', cars: [{ x: 0, p: 8 }], hint: 'Ram <span class="g">GREEN</span> cars to absorb their power!' });
+    ev.push({ d: 45,  type: 'cars', cars: [{ x: 0, p: 8 }], hint: 'Ram cars with a <span class="g">GREEN</span> bar to absorb their power!' });
     ev.push({ d: 85,  type: 'cars', cars: [{ x: -3, p: 10 }, { x: 3, p: 12 }] });
     ev.push({ d: 125, type: 'cars', cars: [{ x: 0, p: 6 }, { x: 0, p: 7, dz: -9 }, { x: 0, p: 8, dz: -18 }], hint: 'Drag <span class="y">UP</span> to speed in and eat the whole convoy!' });
-    ev.push({ d: 185, type: 'cars', cars: [{ x: 0, p: 70, kind: 'truck' }, { x: -3, p: 9 }], hint: '<span class="r">RED</span> is stronger than you. Dodge it!' });
-    ev.push({ d: 245, type: 'pickup', kind: 'gun', xs: [-3, 0, 3], hint: 'Grab a <span class="y">GUN</span>!' });
-    ev.push({ d: 300, type: 'cars', cars: [{ x: 0, p: 55 }], hint: 'Shoot it until it turns <span class="g">GREEN</span>, then ram it! Drag <span class="b">DOWN</span> to shoot longer.' });
+    ev.push({ d: 185, type: 'cars', cars: [{ x: 0, p: 70, kind: 'truck' }, { x: -3, p: 9 }], hint: '<span class="r">RED</span> bar = too strong. Dodge it!' });
+    ev.push({ d: 245, type: 'pickup', kind: 'gun', xs: [-2.8, 0, 2.8], hint: 'Grab a <span class="y">GUN</span>!' });
+    ev.push({ d: 300, type: 'cars', cars: [{ x: 0, p: 55 }], hint: 'Shoot the bar past the <span class="y">white line</span>, then ram it. Shot-down cars leave <span class="g">scrap</span> to eat!' });
     ev.push({ d: 360, type: 'gate' });
     ev.push({ d: 410, type: 'crate', x: 0, reward: 'g:guard', hint: 'Break crates for <span class="y">gadgets</span>!' });
     d = 460;
@@ -1918,7 +1968,7 @@ function spawnEvent(e) {
   const lanes3 = () => shuffle([...LANES]);
   switch (e.type) {
     case 'cars': for (const c of e.cars) addEnemy(c.kind || 'car', c.x, z0 + (c.dz || 0), c.p, c.kind === 'truck' ? 6 : 9); break;
-    case 'weak': for (const x of lanes3().slice(0, 1 + Math.floor(Math.random() * ((e.prog || 0) > 0.5 ? 3 : 2)))) addEnemy('car', x, z0 + rand(-3, 3), weakP(0.22, 0.6), rand(7, 11)); break;
+    case 'weak': for (const x of lanes3().slice(0, 1 + Math.floor(Math.random() * ((e.prog || 0) > 0.5 ? 4 : 3)))) addEnemy('car', x, z0 + rand(-3, 3), weakP(0.22, 0.6), rand(7, 11)); break;
     case 'convoy': { const x = pick(LANES), n = 3 + Math.floor((e.prog || 0) * 3); for (let i = 0; i < n; i++) addEnemy('car', x, z0 - i * 8, weakP(0.12, 0.3), 9); break; }
     case 'strong': {
       const x = pick(LANES), truck = Math.random() < 0.4;
@@ -1934,8 +1984,8 @@ function spawnEvent(e) {
     case 'boost': addHazard('boost', pick(LANES), z0); break;
     case 'oil': for (const x of lanes3().slice(0, Math.random() < 0.5 ? 1 : 2)) addHazard('oil', x, z0 + rand(-3, 3)); break;
     case 'roadwork': {
-      const open = pick(LANES);
-      for (const x of LANES) if (x !== open) { addEnemy('barrier', x, z0, 0, 0); addEnemy('barrier', x, z0 - 9, 0, 0); for (let k = 0; k < 3; k++) addHazard('cone', x + rand(-1, 1), z0 + 3 + k * 1.5); }
+      const open = lanes3().slice(0, 2);
+      for (const x of LANES) if (!open.includes(x)) { addEnemy('barrier', x, z0, 0, 0); addEnemy('barrier', x, z0 - 9, 0, 0);  }
       break;
     }
     case 'rocks': for (let k = 0; k < 3; k++) addHazard('rockfall', pick(LANES), z0 - k * 11); break;
@@ -1955,10 +2005,11 @@ function addEnemy(kind, x, z, power, speed, opts = {}) {
   const e = {
     kind, variant: opts.variant, x, z, y: 0, w: v.w, l: v.l, h: v.h, power, max: power, speed, color,
     group: v.g, wl: v.wl, extra: v.extra, label: null, hitT: 0, wob: rand(0, 6.28), dead: false,
-    hazard: kind === 'mine' || kind === 'kamikaze', indestructible: kind === 'barrier' || kind === 'rock',
+    hazard: kind === 'mine' || kind === 'kamikaze', obstacle: kind === 'barrier' || kind === 'rock',
     shield: 0, shieldMax: 0, stun: 0, fireT: rand(0.5, 1.2), baseX: x,
   };
-  if (!e.indestructible) {
+  if (e.obstacle) { e.power = e.max = Math.max(6, Math.round(run.power * 0.45 * lvlScale())); } // obstacles can be shot down, never eaten
+  {
     e.label = makeLabel(256, 128, kind === 'boss' ? 3.4 : kind === 'biker' ? 1.9 : 2.3);
     e.label.spr.position.set(0, v.h + (kind === 'boss' ? 1.8 : 1.0), 0);
     v.g.add(e.label.spr);
@@ -1979,18 +2030,19 @@ function removeEnemy(e) { scene.remove(e.group); if (e.label) disposeLabel(e.lab
 const REWARD_TEXT = { gun: 'GUN +1', rate: 'FIRE RATE', cash: 'CASH', power: 'POWER' };
 function updateEnemyLabel(e) {
   if (!e.label) return;
-  const p = Math.max(0, Math.ceil(e.power));
-  if (e.hazard) return drawLabel(e.label, String(p), e.kind === 'kamikaze' ? 'KAMIKAZE' : 'DANGER', RED);
+  const frac = Math.max(0, e.power) / e.max;
+  if (e.obstacle) return drawBar(e.label, frac, null, '#f59e0b', e.kind === 'rock' ? 'ROCK' : 'BLOCKED');
+  if (e.hazard) return drawBar(e.label, frac, null, RED, e.kind === 'kamikaze' ? 'KAMIKAZE' : 'DANGER');
   let sub = '';
   if (e.kind === 'crate') sub = e.reward.startsWith('g:') ? GADGET[e.reward.slice(2)].name.toUpperCase() : REWARD_TEXT[e.reward];
   else if (e.kind === 'boss') sub = 'BOSS';
-  else if (e.shield > 0) sub = 'SHIELD ' + Math.ceil(e.shield);
-  drawLabel(e.label, String(p), sub, canRam(e) ? GREEN : RED, e.shield > 0 ? '#4cc9ff' : null);
+  else if (e.shield > 0) sub = 'SHIELD';
+  // Green bar = you can ram it now. The notch shows how far to shoot it down before you can.
+  drawBar(e.label, frac, effPower() / e.max, canRam(e) ? GREEN : RED, sub, e.shield > 0 ? '#4cc9ff' : null);
 }
 
 function damageEnemy(e, dmg, src) {
   if (e.dead) return;
-  if (e.indestructible) { if (src === 'bullet') sparks(e.x, 1, e.z + e.l / 2, '#ffd23f', 3); return; }
   if (e.shield > 0) {
     if (src === 'laser' || src === 'siren') breakShield(e);
     else {
@@ -2031,14 +2083,14 @@ function killEnemy(e, how) {
     shake = Math.max(shake, e.kind === 'boss' ? 0.7 : 0.3);
     hitstop(e.kind === 'boss' ? 900 : 70, e.kind === 'boss' ? 0.2 : 0.08);
   } else {
-    gainPower(Math.max(1, Math.ceil(e.max * 0.1)));
     addCash(Math.ceil(e.max * 0.2) + 1);
-    scrap(pos, e.color, 8, false);
+    scrap(pos, e.color, 6, false);
+    if (!e.hazard) addPickup('wreck', e.x, e.z, { y: 1.4, vy: 7, value: Math.max(1, Math.ceil(e.max * absorbOf(save.parts.crusher))), color: e.color });
     run.shot++;
     shake = Math.max(shake, 0.12);
   }
   if (e.kind === 'splitter') {
-    for (const s of [-1, 1]) addEnemy('car', clamp(e.x + s * 1.6, -3, 3), e.z - 3, Math.max(2, Math.round(e.max * 0.3)), 9);
+    for (const s of [-1, 1]) addEnemy('car', clamp(e.x + s * 1.6, -5.6, 5.6), e.z - 3, Math.max(2, Math.round(e.max * 0.3)), 9);
     showHint('It split! <span class="g">Eat both!</span>', 1.6);
   }
   if (e.kind === 'boss') return winLevel();
@@ -2060,7 +2112,7 @@ function hurtPlayer(e) {
     if ((save.gadgets.hammer || 0) > 0) { save.gadgets.hammer--; persist(); }
     swingHammer();
     if (e.kind === 'boss') { e.power *= 0.7; e.gap = 18; }
-    else killEnemy(e, e.indestructible ? 'shot' : 'ram');
+    else killEnemy(e, e.obstacle ? 'shot' : 'ram');
     flash('HAMMER!', GADGET.hammer.color, 0.9);
     run.invuln = 0.4;
     return;
@@ -2075,8 +2127,8 @@ function hurtPlayer(e) {
 }
 function bounceAway(e) {
   if (e.kind === 'boss') { e.gap = 20; if (e.phase === 'charge') e.phase = 'return'; return; }
-  if (e.indestructible) { player.targetOZ = Math.min(2.6, player.oz + 3); player.oz = player.targetOZ; return; }
-  e.z -= 7; e.x = clamp(e.x + (e.x >= player.x ? 1.6 : -1.6), -3, 3); e.baseX = e.x;
+  if (e.obstacle) { player.targetOZ = Math.min(OZ_BACK, player.oz + 3); player.oz = player.targetOZ; return; }
+  e.z -= 7; e.x = clamp(e.x + (e.x >= player.x ? 1.6 : -1.6), -5.6, 5.6); e.baseX = e.x;
 }
 function hitstop(ms, scale) { timeScale = scale; slowUntil = performance.now() + ms; }
 
@@ -2125,9 +2177,9 @@ function addHazard(type, x, z) {
   let mesh;
   if (type === 'oil') {
     mesh = new THREE.Group();
-    const a = new THREE.Mesh(GEO.disc, new THREE.MeshStandardMaterial({ color: '#111318', roughness: 0.05, metalness: 0.6 }));
+    const a = new THREE.Mesh(GEO.disc, new THREE.MeshStandardMaterial({ color: '#facc15', roughness: 0.15, metalness: 0.3, emissive: '#a16207', emissiveIntensity: 0.35 }));
     a.rotation.x = -Math.PI / 2; a.scale.set(1.5, 1.1, 1); a.position.y = 0.02; mesh.add(a);
-    const b = new THREE.Mesh(GEO.disc, new THREE.MeshBasicMaterial({ color: '#6d28d9', transparent: true, opacity: 0.25 }));
+    const b = new THREE.Mesh(GEO.disc, new THREE.MeshBasicMaterial({ color: '#fef08a', transparent: true, opacity: 0.5 }));
     b.rotation.x = -Math.PI / 2; b.scale.set(0.8, 0.5, 1); b.position.set(0.3, 0.025, -0.2); mesh.add(b);
   } else if (type === 'boost') {
     mesh = new THREE.Group();
@@ -2171,10 +2223,10 @@ function addPickup(type, x, z, opts = {}) {
     mesh.add(part(GEO.box, '#2b2f3a', [0.36, 0.3, 1.3], [0, 0.75, 0]));
     mesh.add(part(GEO.box, '#2b2f3a', [0.3, 0.5, 0.3], [0, 0.55, 0.3]));
     L = makeLabel(256, 128, 1.8); drawLabel(L, 'GUN', '', '#1f2937');
-  } else if (type === 'power') {
-    mesh = new THREE.Mesh(GEO.ico1, mat('#4ade80', { emissive: '#22c55e', emissiveIntensity: 0.9 }));
-    mesh.scale.setScalar(0.55);
-    L = makeLabel(256, 128, 1.6); drawLabel(L, '+POWER', '', GREEN);
+  } else if (type === 'power' || type === 'wreck') {
+    // Everything that gives power looks the same: a glowing green lightning bolt with a ground ring.
+    mesh = makeBolt();
+    L = makeLabel(256, 128, 1.6); drawLabel(L, type === 'wreck' ? '+' + opts.value : '+POWER', '', GREEN);
   } else if (type === 'gadget') {
     const G = GADGET[opts.gadget];
     mesh = new THREE.Group();
@@ -2187,9 +2239,25 @@ function addPickup(type, x, z, opts = {}) {
   mesh.traverse(o => { if (o.isMesh) o.castShadow = true; });
   scene.add(mesh);
   if (L) { L.spr.position.set(x, 2.2, z); scene.add(L.spr); }
-  const p = { type, gadget: opts.gadget, x, z, y: mesh.position.y, vz: opts.vz || 0, vy: opts.vy || 0, mesh, L, got: false };
+  const p = { type, gadget: opts.gadget, value: opts.value, x, z, y: mesh.position.y, vz: opts.vz || 0, vy: opts.vy || 0, mesh, L, got: false };
   pickups.push(p);
   return p;
+}
+let boltGeo = null;
+function makeBolt() {
+  if (!boltGeo) {
+    const sh = new THREE.Shape([[0.12, 0.95], [-0.4, 0.02], [-0.02, 0.02], [-0.2, -0.95], [0.42, 0.14], [0.04, 0.14], [0.32, 0.95]].map(([x, y]) => new THREE.Vector2(x, y)));
+    boltGeo = new THREE.ExtrudeGeometry(sh, { depth: 0.22, bevelEnabled: true, bevelSize: 0.05, bevelThickness: 0.05, bevelSegments: 2 });
+    boltGeo.center();
+  }
+  const g = new THREE.Group();
+  const b = new THREE.Mesh(boltGeo, mat('#86efac', { emissive: '#22c55e', emissiveIntensity: 1.2, flatShading: false, roughness: 0.3 }));
+  b.scale.setScalar(1.15); b.castShadow = true; g.add(b);
+  const ring = new THREE.Mesh(GEO.ring, new THREE.MeshBasicMaterial({ color: '#4ade80', transparent: true, opacity: 0.85, side: THREE.DoubleSide, depthWrite: false }));
+  ring.rotation.x = -Math.PI / 2; ring.position.y = -0.85; ring.scale.setScalar(1.1); g.add(ring);
+  const glow = new THREE.Mesh(GEO.disc, new THREE.MeshBasicMaterial({ color: '#22c55e', transparent: true, opacity: 0.3, depthWrite: false }));
+  glow.rotation.x = -Math.PI / 2; glow.position.y = -0.86; glow.scale.setScalar(1.1); g.add(glow);
+  return g;
 }
 function removePickup(p) { scene.remove(p.mesh); if (p.L) { scene.remove(p.L.spr); disposeLabel(p.L); } }
 function spawnDrop(x, z) {
@@ -2254,7 +2322,7 @@ function doEmp() {
   const pz = playerZ();
   ringFx(player.x, pz, 40, '#22d3ee', 0.7);
   for (const e of enemies) {
-    if (e.dead || e.indestructible || e.z > pz + 4 || e.z < pz - 60) continue;
+    if (e.dead || e.obstacle || e.z > pz + 4 || e.z < pz - 60) continue;
     if (e.kind === 'boss') { e.power = Math.max(1, e.power * 0.8); continue; }
     e.power *= 0.6; e.stun = 2; e.hitT = 0.1;
     if (e.power < 1) killEnemy(e, 'shot');
@@ -2342,7 +2410,7 @@ function popup(text, bg = GREEN) {
 function nearestAhead(x, z, maxRange, inLine) {
   let best = null, bd = Infinity;
   for (const e of enemies) {
-    if (e.dead || e.indestructible || e.kind === 'mine') continue;
+    if (e.dead || e.kind === 'mine') continue;
     const dz = z - e.z;
     if (dz < 0 || dz > maxRange) continue;
     if (inLine && Math.abs(e.x - x) > e.w / 2 + 0.4) continue;
@@ -2548,7 +2616,7 @@ function updateBoss(e, dt) {
   const V = e.variant;
   let gapTarget = weak ? 2 : 16;
   if (V === 'armored') {
-    e.x = Math.sin(e.bt * (weak ? 0.6 : 0.9)) * (weak ? 1.6 : 2.4);
+    e.x = Math.sin(e.bt * (weak ? 0.6 : 0.9)) * (weak ? 2.6 : 4.4);
     e.timer -= dt;
     if (!weak && e.timer <= 0) { e.timer = rand(0.7, 1.2); addEnemy('mine', e.x + rand(-0.6, 0.6), e.z + 3.6, 3 + run.level, run.speed - 9); }
     e.gap += (gapTarget - e.gap) * Math.min(1, dt * (weak ? 0.9 : 1.2));
@@ -2556,7 +2624,7 @@ function updateBoss(e, dt) {
     e.timer -= dt;
     if (weak) { e.phase = 'cruise'; clearWarn(e); }
     if (e.phase === 'cruise') {
-      e.x += (Math.sin(e.bt * 0.8) * 2.2 - e.x) * Math.min(1, dt * 2);
+      e.x += (Math.sin(e.bt * 0.8) * 3.8 - e.x) * Math.min(1, dt * 2);
       e.gap += (gapTarget - e.gap) * Math.min(1, dt * 1.2);
       if (!weak && e.timer <= 0) {
         e.phase = 'warn'; e.timer = 1.0; e.lane = LANES.reduce((a, b) => Math.abs(b - player.x) < Math.abs(a - player.x) ? b : a);
@@ -2576,7 +2644,7 @@ function updateBoss(e, dt) {
       if (e.gap >= 16) { e.phase = 'cruise'; e.timer = rand(1.4, 2.2); }
     }
   } else if (V === 'tankboss') {
-    e.x = Math.sin(e.bt * 0.7) * 2.2;
+    e.x = Math.sin(e.bt * 0.7) * 3.8;
     e.gap += (gapTarget - e.gap) * Math.min(1, dt * 1.2);
     const tur = e.extra.turret;
     if (tur) tur.rotation.y = Math.atan2(-(player.x - e.x), (playerZ() - e.z)) + Math.PI;
@@ -2622,7 +2690,9 @@ function autopilotSteer() {
   const threats = ahead.filter(e => !canRam(e));
   for (const h of hazards) if ((h.type === 'oil' || (h.type === 'rockfall' && h.armed)) && h.z < pz + 2 && h.z > pz - 25) threats.push({ x: h.x, z: h.z, w: 2.4 });
   for (const b of ebullets) threats.push({ x: b.x, z: b.z, w: 1 });
-  const food = ahead.filter(e => canRam(e) && e.kind !== 'boss').sort((a, b) => b.z - a.z);
+  const food = ahead.filter(e => canRam(e) && e.kind !== 'boss');
+  for (const p of pickups) if (p.type === 'wreck' && !p.got && p.z < pz + 1 && p.z > pz - 34) food.push({ x: p.x, z: p.z, w: 1.6 });
+  food.sort((a, b) => b.z - a.z);
   apTarget = food[0] || null;
   const blocked = x => threats.some(t => Math.abs(t.x - x) < (t.w || 2) / 2 + player.w * player.scale / 2 + 0.3 && t.z > pz - 24);
   let want = food.length ? food[0].x : player.x;
@@ -2655,7 +2725,7 @@ function updatePlay(dt) {
   if (F.autopilot > 0 && !r.over) autopilotSteer();
   if (F.slide > 0) { player.targetX += r.slideDir * 7 * dt; player.spin += dt * 14 * r.slideDir; } else player.spin *= 1 - Math.min(1, dt * 10);
   const lim = ROAD_HALF - 0.45 - player.w * player.scale / 2;
-  const ozMin = -(5 + motor * 0.4), ozMax = 2.6;
+  const ozMin = -(6 + motor * 0.4), ozMax = OZ_BACK + motor * 0.2;
   if (F.nitro > 0) player.targetOZ = Math.min(player.targetOZ, -5);
   player.targetX = clamp(player.targetX, -lim, lim);
   player.targetOZ = clamp(player.targetOZ, ozMin, ozMax);
@@ -2694,18 +2764,30 @@ function updatePlay(dt) {
 
   // --- enemies
   const pw = player.w * player.scale * 0.5, pl = player.l * player.scale * 0.5;
+  // Cars and obstacles are solid to each other: faster cars queue behind slower ones instead of driving through.
+  const front = enemies.filter(e => !e.dead && e.kind !== 'boss').sort((a, b) => a.z - b.z);
+  for (const a of front) {
+    if (a.speed <= 0 || a.y > 1 || a.stun > 0) continue;
+    for (const b of front) {
+      if (b === a || b.dead || b.z >= a.z || b.y > 1) continue;
+      const gap = (a.l + b.l) / 2 + 0.4;
+      if (Math.abs(a.x - b.x) < (a.w + b.w) / 2 - 0.1 && a.z - b.z < gap) a.z = b.z + gap;
+    }
+  }
   for (const e of enemies) {
     if (e.dead) continue;
     if (e.stun > 0) e.stun -= dt;
     if (e.kind === 'boss') updateBoss(e, dt);
     else if (e.stun <= 0) {
       e.z -= e.speed * dt;
-      if (e.kind === 'biker') e.x = clamp(e.baseX + Math.sin(r.t * 1.6 + e.wob) * 1.6, -3.6, 3.6);
+      if (e.kind === 'biker') e.x = clamp(e.baseX + Math.sin(r.t * 1.6 + e.wob) * 1.6, -6.4, 6.4);
       else if (e.kind === 'car' && e.speed > 0) e.group.rotation.y = Math.sin((e.wob += dt) * 2) * 0.03;
       else if (e.kind === 'gunner') {
         const dz = pz - e.z;
-        if (e.extra.turret) e.extra.turret.rotation.y = Math.atan2(player.x - e.x, dz) * 0.8;
+        if (e.extra.turret) e.extra.turret.rotation.y = 0;
         e.fireT -= dt;
+        if (e.fireT < 0.3 && !e.warned && dz > 8 && dz < 38) { e.warned = true; burst(new THREE.Vector3(e.x, 1.6, e.z + 1.3), '#ff3b4d', 0.7, 0.3); }
+        if (e.fireT <= 0) e.warned = false;
         if (e.fireT <= 0 && dz > 8 && dz < 38 && !r.over) { e.fireT = 1.0; enemyShot(e); }
       } else if (e.kind === 'kamikaze' && e.extra.beacon) e.extra.beacon.visible = Math.floor(r.t * 8) % 2 === 0;
     }
@@ -2801,6 +2883,7 @@ function updatePlay(dt) {
     }
     p.mesh.position.set(p.x, p.y + Math.sin(r.t * 4 + p.z) * 0.12, p.z);
     p.mesh.rotation.y += dt * 3;
+    if ((p.type === 'wreck' || p.type === 'power') && !p.vy && Math.hypot(p.x - player.x, p.z - pz) < 3.2) { const k = Math.min(1, dt * 8); p.x += (player.x - p.x) * k; p.z += (pz - p.z) * k; }
     if (p.L) p.L.spr.position.set(p.x, p.y + 1.4, p.z);
     if (!p.got && Math.abs(p.x - player.x) < pw + 0.7 && Math.abs(p.z - pz) < pl + 0.7) {
       p.got = true;
@@ -2809,6 +2892,7 @@ function updatePlay(dt) {
       else if (p.type === 'power') { gainPower(Math.round(r.power * 0.1) + 3); sfx.pickup(); }
       else if (p.type === 'gun') { if (r.barrels === 0) { addBarrel(); sfx.pickup(); } for (const q of pickups) if (q.type === 'gun') q.got = true; }
       else if (p.type === 'gadget') activate(p.gadget);
+      else if (p.type === 'wreck') { gainPower(p.value); run.smashed++; ringFx(player.x, pz, 3, '#4ade80', 0.35); sfx.pickup(); }
     }
   }
   for (let i = pickups.length - 1; i >= 0; i--) { const p = pickups[i]; if (p.got || p.z > -r.dist + 16) { removePickup(p); pickups.splice(i, 1); } }
@@ -2831,8 +2915,9 @@ function updatePlay(dt) {
 function enemyShot(e) {
   const m = new THREE.Mesh(GEO.sphere, mat('#ff3b4d', { emissive: '#ff1f35', emissiveIntensity: 1.5 }));
   m.scale.setScalar(0.28); scene.add(m);
-  const rel = 13, vz = run.speed + rel, dz = playerZ() - e.z, t = dz / rel;
-  ebullets.push({ mesh: m, x: e.x, z: e.z + e.l / 2, vx: (player.x - e.x) / Math.max(t, 0.3), vz });
+  // Closing speed on the player used to be 2*speed+13; halved now. The lead uses the same closing speed.
+  const closing = (2 * run.speed + 13) / 4, vz = closing - run.speed, dz = playerZ() - e.z, t = dz / closing;
+  ebullets.push({ mesh: m, x: e.x, z: e.z + e.l / 2, vx: 0, vz }); // straight down its own lane: dodge by changing lane
   burst(new THREE.Vector3(e.x, 1.5, e.z + 1), '#ff6b7a', 0.5, 0.1);
   sfx.shot();
 }
@@ -2847,8 +2932,8 @@ function updateCamera(rdt) {
   if (state === 'play' && run) {
     anchor = -run.dist;
     const s = player.scale;
-    pos = new THREE.Vector3(player.x * 0.4, 9.4 + s * 1.3, anchor + 10 + s);
-    look = new THREE.Vector3(player.x * 0.5, 0, anchor - 10);
+    pos = new THREE.Vector3(player.x * 0.4, 12.6 + s * 1.3, anchor + 14 + s);
+    look = new THREE.Vector3(player.x * 0.5, 0, anchor - 11);
   } else {
     garageT += rdt;
     const a = garageT * 0.35, r = (state === 'garage' ? 7.5 : 7) + player.l * 1.1;
@@ -2895,7 +2980,7 @@ canvas.addEventListener('pointermove', e => {
   if (run.fx.autopilot > 0) { if (Math.hypot(e.clientX - dragX0, e.clientY - dragY0) > 30) { restartAnim($('apbar'), 'nudge'); dragX0 = e.clientX; dragY0 = e.clientY; } return; }
   const r = canvas.getBoundingClientRect();
   const dx = e.clientX - dragX0, dy = e.clientY - dragY0;
-  player.targetX = tx0 + dx / r.width * (13 + save.parts.motor * 0.6);
+  player.targetX = tx0 + dx / r.width * (21 + save.parts.motor * 0.9);
   player.targetOZ = oz0 + dy / r.height * 24;
   if (Math.abs(dx) > r.width * 0.06) run.movedX = true;
   if (Math.abs(dy) > r.height * 0.04) run.movedY = true;
