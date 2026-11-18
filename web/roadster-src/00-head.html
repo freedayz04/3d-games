@@ -261,6 +261,21 @@ button:focus-visible { outline: 3px solid var(--cash); outline-offset: 3px; }
 .ribbon i:first-child { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 35% 50%); }
 .ribbon i:last-child { clip-path: polygon(0 0, 100% 0, 65% 50%, 100% 100%, 0 100%); }
 
+/* ---------- cover polish ---------- */
+.panel.title { overflow: hidden; background: radial-gradient(ellipse 90% 45% at 50% 18%, rgba(255,214,102,.28), transparent 70%), linear-gradient(rgba(12,18,32,.35), rgba(12,18,32,0) 32%, rgba(12,18,32,0) 58%, rgba(12,18,32,.85)); }
+.panel.title::before { content: ""; position: absolute; left: 50%; top: 14%; width: 170%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none;
+  background: repeating-conic-gradient(rgba(255,255,255,.16) 0deg 7deg, transparent 7deg 18deg);
+  -webkit-mask: radial-gradient(circle, #000 8%, transparent 52%); mask: radial-gradient(circle, #000 8%, transparent 52%); animation: rays 40s linear infinite; }
+@keyframes rays { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.panel.title .logo { animation: bob 3.2s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: rotate(-3deg) translateY(0); } 50% { transform: rotate(-2deg) translateY(calc(var(--u)*-1.4)); } }
+.tstats { display: flex; gap: calc(var(--u)*2); margin-bottom: calc(var(--u)*1); }
+.tstats .chip { font-size: calc(var(--u)*4); }
+.btn.play { position: relative; overflow: hidden; animation: pulse 1.6s ease-in-out infinite; }
+.btn.play::after { content: ""; position: absolute; top: 0; bottom: 0; width: 35%; left: -50%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); animation: shine 2.6s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes shine { 0%, 55% { left: -50%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { .panel.title::before, .panel.title .logo, .btn.play, .btn.play::after { animation: none; } }
 /* ---------- v5 ---------- */
 .iconbtn.corner { position: absolute; top: calc(var(--u)*4); right: calc(var(--u)*4); width: calc(var(--u)*12); height: calc(var(--u)*12); }
 .fx { padding: calc(var(--u)*.9); gap: calc(var(--u)*.6); }
@@ -329,6 +344,7 @@ button:focus-visible { outline: 3px solid var(--cash); outline-offset: 3px; }
       <div class="ribbon"><i></i><b>SURVIVE</b><i></i></div>
     </div>
     <div class="grow"></div>
+    <div class="tstats"><span class="chip" id="tLvl">LV 1</span><span class="chip cash"><span id="tCoin"></span><span id="tCash">0</span></span></div>
     <button class="btn play" id="playBtn"><span class="tri"></span>PLAY</button>
     <div class="trow"></div>
     <button class="iconbtn corner" id="setBtn" aria-label="Settings"></button>

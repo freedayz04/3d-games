@@ -32,7 +32,7 @@ renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.05;
+renderer.toneMappingExposure = 1.12;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color('#9ad8ff');
@@ -42,7 +42,10 @@ const hemi = new THREE.HemisphereLight('#eaf6ff', '#6f9a4e', 1.6);
 scene.add(hemi);
 const sun = new THREE.DirectionalLight('#fff1dc', 2.4);
 sun.castShadow = true;
-sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.mapSize.set(2048, 2048);
+sun.shadow.radius = 3;
+// Cool fill light from the opposite side: softer shadows and readable silhouettes.
+const fill = new THREE.DirectionalLight('#bcd7ff', 0.7); fill.position.set(-8, 6, 10); scene.add(fill);
 Object.assign(sun.shadow.camera, { left: -14, right: 14, top: 28, bottom: -28, near: 1, far: 70 });
 sun.shadow.bias = -0.0006;
 scene.add(sun, sun.target);

@@ -15,7 +15,7 @@ function updateCamera(rdt) {
     garageT += rdt;
     const a = garageT * 0.35, r = (state === 'garage' ? 7.5 : 7) + player.l * 1.1;
     pos = new THREE.Vector3(Math.sin(a) * r, state === 'garage' ? 4.6 : 4.4, showcaseZ + Math.cos(a) * r);
-    look = new THREE.Vector3(0, state === 'garage' ? -2.2 : 2.8, showcaseZ);
+    look = new THREE.Vector3(0, state === 'garage' ? -2.2 : 1.6, showcaseZ);
   }
   const k = 1 - Math.exp(-6 * rdt);
   camState.pos.lerp(pos, k); camState.look.lerp(look, k);
@@ -35,6 +35,7 @@ function frame(now) {
   else {
     player.group.position.set(0, 0, showcaseZ); player.group.scale.setScalar(1.1);
     player.body.rotation.set(0, 0, 0); player.body.visible = true; player.group.visible = true; bubble.visible = false; player.label.spr.visible = false;
+    if (state === 'title' && player.model) { player.body.position.y = Math.abs(Math.sin(now / 260)) * 0.06; player.body.rotation.z = Math.sin(now / 520) * 0.02; for (const w of player.model.wl) w.rotation.x -= rdt * 9; if (Math.random() < rdt * 10) dust(rand(-0.6, 0.6), player.l * 0.55, '#e7e5e4'); } else player.body.position.y = 0;
   }
   for (let i = fx.length - 1; i >= 0; i--) if (!fx[i].update(rdt)) { scene.remove(fx[i].m); fx[i].dispose && fx[i].dispose(); fx.splice(i, 1); }
   updateCamera(rdt);
@@ -84,6 +85,7 @@ function setState(s) {
   }
   if (s === 'play') renderGadgetBar(true);
   if (s === 'garage') renderGarage();
+  if (s === 'title') { $('tLvl').textContent = 'LV ' + save.level; $('tCash').textContent = save.cash; $('tCoin').innerHTML = icon('coin'); }
 }
 let hudCache = {};
 function setHTML(id, html) { if (hudCache[id] !== html) { hudCache[id] = html; $(id).innerHTML = html; } }
