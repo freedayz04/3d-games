@@ -1,0 +1,23 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.freedayz04.roadstersurvive'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.freedayz04.roadstersurvive'
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName '0.1.0'
+    }
+    signingConfigs {
+        release {
+            if (project.hasProperty('ksPath')) {
+                storeFile file(project.property('ksPath')); storePassword project.property('ksPass')
+                keyAlias 'roadster'; keyPassword project.property('ksPass')
+            }
+        }
+    }
+    buildTypes { release { minifyEnabled false; signingConfig signingConfigs.release } }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
+}
+dependencies { implementation 'androidx.webkit:webkit:1.11.0' }
